@@ -5,4 +5,9 @@ class AuxiliaryInstructor(instructorID: Int,
                           surname: String,
                           lecturingYears: Int,
                           val monitoringHours: Int
-                       ): Instructor(instructorID, name, surname, lecturingYears)
+                       ) : Instructor(instructorID, name, surname, lecturingYears) {
+    init {
+        println("Professor adjunto $instructorID - $name $surname." +
+                " Anos de experiência: $lecturingYears; Horas de monitoria: $monitoringHours")
+    }
+}

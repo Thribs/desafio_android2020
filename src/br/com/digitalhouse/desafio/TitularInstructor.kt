@@ -5,4 +5,9 @@ class TitularInstructor(instructorID: Int,
                         surname: String,
                         lecturingYears: Int,
                         val speciality: String
-                        ) : Instructor(instructorID, name, surname, lecturingYears)
+                        ) : Instructor(instructorID, name, surname, lecturingYears) {
+    init {
+        println("Professor titular $instructorID - $name $surname." +
+                " Anos de experiência: $lecturingYears; Especialidade: $speciality")
+    }
+}

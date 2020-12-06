@@ -96,11 +96,16 @@ class DigitalHouseManager(private val studentsList: MutableList<Student> = mutab
         }
         return false
     }
-    fun enrollStudent(studentID: Int, courseID: Int): Boolean{
+    // Obs: O aviso de curso já no limite de alunos é entregue pelo método newStudent()
+    fun enrollStudent(studentID: Int, courseID: Int, date: Date): Boolean{
         for (course in coursesList) if (course.courseID == courseID) {
             for (student in studentsList) if (student.studentID == studentID) {
-                course.newStudent(student)
-                return true
+                if (course.newStudent(student)) {
+                    val enrollment = Enrollment(student, course, date)
+                    enrollmentsList.add(enrollment)
+                    println("Aluno $studentID - ${student.name} ${student.surname} matriculado no curso $courseID - ${course.name}")
+                    return true
+                }
             }
         }
         return false

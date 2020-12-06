@@ -1,6 +1,6 @@
 package br.com.digitalhouse.desafio
 
-open class Instructor(val instructorID: Int,
+abstract class Instructor(val instructorID: Int,
                       val name: String,
                       val surname: String,
                       val lecturingYears: Int) {

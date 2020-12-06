@@ -2,10 +2,13 @@ package br.com.digitalhouse.desafio
 
 class Course(val courseID: Int,
              val name: String,
-             val studentsLimit: Int,
-             val studentsList: MutableList<Student> = mutableListOf<Student>(),
-             var titularInstructor: TitularInstructor? = null,
-             var auxiliaryInstructor: AuxiliaryInstructor? = null) {
+             val studentsLimit: Int) {
+    init {
+        println("Curso $courseID - $name. Limite de alunos: $studentsLimit")
+    }
+    val studentsList: MutableList<Student> = mutableListOf<Student>()
+    var titularInstructor: TitularInstructor? = null
+    var auxiliaryInstructor: AuxiliaryInstructor? = null
     fun equals(course: Course): Boolean{
         return courseID == course.courseID
     }
@@ -22,7 +25,10 @@ class Course(val courseID: Int,
     }
     // Retorna falso se a lista de alunos estiver "cheia"
     fun newStudent(student: Student): Boolean{
-        if (studentsList.size >= studentsLimit) return false
+        if (studentsList.size >= studentsLimit) {
+            println("O curso já está no limite de alunos")
+            return false
+        }
         studentsList.add(student)
         return true
     }

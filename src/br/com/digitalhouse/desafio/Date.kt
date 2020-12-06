@@ -1,9 +1,8 @@
 package br.com.digitalhouse.desafio
 
-import java.time.Month
-import java.time.MonthDay
-import java.time.Year
-
 class Date(val day: Int, val month: Int, val year: Int) {
-
+    init {
+        if (day<10) println("0$day/$month/$year")
+        else println("$day/$month/$year")
+    }
 }
