@@ -6,6 +6,14 @@ class DigitalHouseManager(private val studentsList: MutableList<Student> = mutab
                           private val instructorsList: MutableList<Instructor?> = mutableListOf()
                           ) {
     // Retorna falso se já houve um aluno com o mesmo ID na lista
+
+    override fun toString(): String {
+        return "Cursos: $coursesList\n" +
+                "Professores: $instructorsList\n" +
+                "Alunos: $studentsList\n" +
+                "Matrículas: $enrollmentsList\n"
+    }
+
     fun addStudent(studentID: Int,
                    studentName: String,
                    studentSurname: String
@@ -88,8 +96,10 @@ class DigitalHouseManager(private val studentsList: MutableList<Student> = mutab
     }
     fun removeStudent(studentID: Int): Boolean{
         for (s in studentsList) if (s.studentID == studentID) {
+            for (e in enrollmentsList) if (e.student == s) {
+                println("Esse aluno está matriculado no curso ${e.course.name}. Não é possível removê-lo")
+            }
             studentsList.remove(s)
-
             println("Aluno $studentID removido da instituição")
             return true
         }
@@ -120,15 +130,14 @@ class DigitalHouseManager(private val studentsList: MutableList<Student> = mutab
             for (student in studentsList) if (student.studentID == studentID) {
                 if (course.newStudent(student)) {
                     val enrollment = Enrollment(student, course, date)
-                    // Retorna falso se a matrícula já existir
-                    for (e in enrollmentsList) if (e == enrollment) {
-                        println("O aluno ${student.name} ${student.surname} já está matriculado no curso ${course.name}")
-                    }
                     enrollmentsList.add(enrollment)
                     println("Aluno $studentID - ${student.name} ${student.surname} matriculado no curso $courseID - ${course.name}")
                     return true
                 }
+                return false
             }
+            println("Aluno não encontrado")
+            return false
         }
         println("Curso não encontrado")
         return false
@@ -147,12 +156,15 @@ class DigitalHouseManager(private val studentsList: MutableList<Student> = mutab
         for (course in coursesList) if (course.courseID == courseID) {
             for (instructor in instructorsList) if (instructor?.instructorID == auxiliaryInstructorID) {
                 course.auxiliaryInstructor = instructor as AuxiliaryInstructor
+                println("Professor adjunto ${instructor.name} alocado ao curso ${course.name}")
             }
             for (instructor in instructorsList) if (instructor?.instructorID == titularInstructorID) {
                 course.titularInstructor = instructor as TitularInstructor
+                println("Professor titular ${instructor.name} alocado ao curso ${course.name}")
                 return true
             }
         }
+        println("Curso não encontrado")
         return false
     }
 }

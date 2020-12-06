@@ -30,6 +30,10 @@ class Course(val courseID: Int,
             println("O curso já está no limite de alunos")
             return false
         }
+        if (studentsList.contains(student)) {
+            println("Esse aluno já está matriculado nesse curso")
+            return false
+        }
         studentsList.add(student)
         return true
     }
