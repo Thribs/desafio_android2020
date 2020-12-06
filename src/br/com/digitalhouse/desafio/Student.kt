@@ -1,11 +1,19 @@
 package br.com.digitalhouse.desafio
 
 class Student(val studentID: Int, val name: String, val surname: String) {
-    init {
-        println("Aluno $studentID - $name $surname")
+    override fun toString(): String {
+        return "Aluno $studentID - $name $surname"
     }
-    //TODO: usar uma interface para equals e contains
-    fun equals(student: Student): Boolean {
-        return studentID == student.studentID
+
+    override fun equals(other: Any?): Boolean {
+        if (other is Student) {
+            return other.studentID == studentID
+        }
+        return super.equals(other)
+    }
+
+    // Feito pela IDE
+    override fun hashCode(): Int {
+        return studentID
     }
 }

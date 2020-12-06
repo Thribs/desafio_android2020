@@ -4,10 +4,10 @@ class AuxiliaryInstructor(instructorID: Int,
                           name: String,
                           surname: String,
                           lecturingYears: Int,
-                          val monitoringHours: Int
+                          private val monitoringHours: Int
                        ) : Instructor(instructorID, name, surname, lecturingYears) {
-    init {
-        println("Professor adjunto $instructorID - $name $surname." +
-                " Anos de experiência: $lecturingYears; Horas de monitoria: $monitoringHours")
+    override fun toString(): String {
+        return "Professor adjunto $instructorID - $name $surname." +
+                " Anos de experiência: $lecturingYears; Horas de monitoria: $monitoringHours"
     }
 }

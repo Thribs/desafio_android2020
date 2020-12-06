@@ -26,7 +26,21 @@ fun main() {
     manager.enrollStudent(1001, 20002, dateToday)
     manager.enrollStudent(1003, 20002, dateToday)
     manager.enrollStudent(1004, 20002, dateToday)
+    manager.expelStudent(1002, 20002, "Abir espaço")
+    manager.expelStudent(1001, 20002, "Abir espaço")
+    manager.enrollStudent(1004, 20002, dateToday)
 
+    println("----------Testes----------")
+    manager.addAuxiliaryInstructor(0, "Teste", "", 0, 0)
+    manager.addStudent(0, "Teste", "")
+    manager.addCourse(0,"Teste", 0)
+    manager.enrollStudent(1004, 20002, dateToday)
+    manager.removeInstructor(0)
+    manager.removeStudent(0)
+    manager.removeCourse(0)
+    manager.removeInstructor(0)
+    manager.removeStudent(0)
+    manager.removeCourse(0)
 
 
 

@@ -4,10 +4,10 @@ class TitularInstructor(instructorID: Int,
                         name: String,
                         surname: String,
                         lecturingYears: Int,
-                        val speciality: String
+                        private val speciality: String
                         ) : Instructor(instructorID, name, surname, lecturingYears) {
-    init {
-        println("Professor titular $instructorID - $name $surname." +
-                " Anos de experiência: $lecturingYears; Especialidade: $speciality")
+    override fun toString(): String {
+        return "Professor titular $instructorID - $name $surname." +
+                " Anos de experiência: $lecturingYears; Especialidade: $speciality"
     }
 }

@@ -4,7 +4,14 @@ abstract class Instructor(val instructorID: Int,
                       val name: String,
                       val surname: String,
                       val lecturingYears: Int) {
-    fun equals(instructor: Instructor): Boolean{
-        return instructorID == instructor.instructorID
+    override fun equals(other: Any?): Boolean {
+        if (other is Instructor) {
+            return other.instructorID == instructorID
+        }
+        return super.equals(other)
+    }
+    // Feito pela IDE
+    override fun hashCode(): Int {
+        return instructorID
     }
 }
